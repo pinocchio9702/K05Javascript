@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM.html</title>
+</head>
+<body>
+    <script>
+        var getString = function(param){
+            switch(param){
+                case "POL": return "정치";
+                case "ECO": return "정치";
+                case "ENT": return "연예";
+            }
+        }
+        /*
+        태크명으로 DOM객체 얻어오기. 2개 이상 존재할 수 있으므로 배열로 얻어온다.
+        */
+        function fnGetElementsByTag(){
+            var inputs = document.getElementsByTagName("input");
+            var checkString = "", inputString;
+            //얻어온 input의 갯수만큼 반복
+            for(var i =0; i<inputs.length; i++){
+                //얻어온 요소가 checkbox이면서 체크된 상태인지 확인
+                if(inputs[i].type =="checkbox" && inputs[i].checked == true){
+                    checkString += getString(inputs[i].value) + " ";
+                    //input태그의 속성을 동적으로 변경할 수 있다.
+                    inputs[i].type = "button";
+                    inputs[i].value = "동적버튼 변경";
+                }
+                //얻어온 요소가 text이면서 name이 txt인지 확인
+                if(inputs[i].type == "text" && inputs[i].name =="txt"){
+                    inputString = inputs[i].value;
+                }
+            }
+            alert("선택한값 :" + checkString + ", 입력한값 : " + inputString);
+        }
+
+        function fnGetDomain(){
+            var a_tags = document.getElementsByTagName("a");
+            for(var i=0; i<a_tags.length; i++){
+            /*
+            해당 DOM요소의 href속성을 대문자로 변경한 후 WWW라는 문자열이 포함되었는지 여부를 확인한다.
+            */
+                if(a_tags[i].href.toUpperCase().indexOf("WWW")!=-1){
+                    //href속성을 얻어와서 경고창으로 띄어줌
+                    alert(a_tags[i].href);
+                }
+            }
+        }
+    </script>
+
+    <h2>DOM객체 사용하기</h2>
+    <input type="checkbox" name ="inter" value="POL" checked="checked"/>정치
+    <input type="checkbox" name ="inter" value="ECO"/>경제
+    <input type="checkbox" name ="inter" value="ENT" checked="checked"/>연예
+    <input type="text" name='txt'>
+    <input type="button" value="태그명으로DOM객체얻기" onclick="fnGetElementsByTag();" />
+
+    <h2>태그명으로 객체얻기2</h2>
+    <!-- ul>(li>a)*3 -->
+    <ul>
+        <li><a href="http://www.naver.com"></a>네이버</li>
+        <li><a href="http://www.daum.net"></a>다음</li>
+        <li><a href="http://www.nate.com"></a>네이트</li>
+    </ul>
+    <button onclick="fnGetDomain();">도메인 얻어오기</button>
+
+    <script>
+        function fnGetElementsByName(){
+            
+            //name속성을 통해 DOM을 얻은 후 배열로 반환
+            var names = document.getElementsByName("inter");
+
+            /*
+            checkbox 을
+                체크할때 true혹으 checked값을 설정한다.
+                체크를 해제할때는 false혹은 null값은 설정한다.
+            단, 체크되었는지 판단할때는 반드시 true / false를
+            사용해야한다.
+            */
+            for(var i=0; i<names.length; i++){
+
+                if(names[i].checked==true){
+                    //언체크할때 사용
+                    //names[i].checked = null;
+                    names[i].checked = false;
+                }
+                else if(names[i].checked == false){
+                    //체크할때 사용
+                    //names[i].checked = "checked";
+                    names[i].checked = "true";
+                }
+            }
+        }
+        //class속성으로 DOM을 얻어온 후 배열로 반환한다.
+        function fnGetElementsClass(){
+            var portals = document.getElementsByClassName("portal");
+            for(var i=0; i<portals.length; i++){
+                alert(portals[i].innerHTML);
+            }
+        }
+    </script>
+        
+        <h2>이름으로 얻기</h2>
+        <h3>아래 버튼을 누르시면 위 체크박스가 반전됩니다.</h3>
+        <input type="button" value="name속성에 지정한 값으로 DOM객체 얻기" onclick="fnGetElementsByName();"/>
+
+        <h2>클래스명으로 객체얻기</h2>
+        <ul>
+            <li><a href="#" class="portal">네<b>이</b>버</a></li>
+            <li><a href="#" class="portal">다음</a></li>
+            <li><a href="#" class="portal">네이트</a></li>
+        </ul>
+        <button onclick="fnGetElementsClass()">
+            클래스명으로 DOM객체 얻어오기
+        </button>
+
+        <script>
+            /*
+            img태그의 src, width속성을 동적으로 변경할여
+            쇼핑몰에서 썸네일과 같은 효과를 구현할 수 있다.
+            */
+            function fnChangeImg(imgNum){
+                var img_tag = document.getElementById("trump");
+                img_tag.src = "./images/" + imgNum + ".jpg";
+                img_tag.width = parseInt(imgNum * 10);
+            }
+        </script>
+
+        <h2>동적으로 이미지 교체하기(ID로 DOM객체 얻기)</h2>
+        <fieldset>
+            <legend>이미지 동적 교체</legend>
+            <a href="javascript:fnChangeImg(1);">1번이미지</a>
+            <a href="javascript:fnChangeImg(2);">2번이미지</a>
+            <a href="javascript:fnChangeImg(3);">3번이미지</a>
+            <a href="javascript:fnChangeImg(4);">4번이미지</a>
+            <a href="javascript:fnChangeImg(5);">5번이미지</a>
+            <a href="javascript:fnChangeImg(6);">6번이미지</a>
+            <a href="javascript:fnChangeImg(7);">7번이미지</a>
+            <a href="javascript:fnChangeImg(8);">8번이미지</a>
+            <a href="javascript:fnChangeImg(9);">9번이미지</a>
+            <a href="javascript:fnChangeImg(10);">10번이미지</a>
+            <hr/>
+            <img id="trump" src="" width="100" alt="이미지교체하기"/>
+        </fieldset>
+
+</body>
+</html>

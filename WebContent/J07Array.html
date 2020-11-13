@@ -69,18 +69,26 @@
 </head>
 <body>
     <script type="text/Javascript">
+    //해당 페이지 전체에서 사용할수 있는 전역변수
     var studentAttay = new Array();
-
+    
+    //무기명 함수(이름이 없는 함수) 형태로 선언함
     var getAverage = function(){
         var countOfStudent = document.getElementById("numOfStudent").value;
         //alert("countOfStudent=" + countOfStudent);
         //return
 
         var total = 0;
+        /*
+        prompt() : 사용자로부터 입력을 받을 수 있는 대화창이다.
+            다폴트 값이 필요한 경우 두번째 인자를 사용한다.
+            현재는 50으로 설정이 되어있다.
+        */
         for(var i =0; i<countOfStudent; i++){
+            //입력한 점수는 즉시 배열에 저장되고 누적합을 구한다.
             studentAttay[i] = 
                 parseInt(prompt(i+1 + "번쨰 학생점수", "50"));
-            total += studentAttay[i]
+            total += studentAttay[i];
         }
 
         var average = total / countOfStudent;
