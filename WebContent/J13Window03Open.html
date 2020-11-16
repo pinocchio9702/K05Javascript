@@ -19,6 +19,11 @@
         //open()함수가 반환하는 윈도우객체를 저장하기 위한 전역변수
         var winObj1;
 
+        /*
+        파업창에 대한 제어
+        -부모창에서 자식 파업창을 제어할땐 파업창의 참조변수를 이용한다.
+        -즉 open()이 반환하는 윈도우 객체를 통해 제어하게 된다.
+        */
         function popFirst(){
             winObj1= window.open("./pages/popup01.html", "pop1", "width=300, height=300,left=0, top=0");
         }
@@ -28,17 +33,26 @@
         }
 
         function screenCenterPop(){
+            /*
+            screen객체를 통해 사용하는 모니터의 해상도를 얻어올수 있다.
+            해상도와 파업창의 크기를 이용하여 가운데로 위치를 지정한다..
+            */
             //모니터의 해상도를 구해온다.
             var s_width = window.screen.width;
             var s_height = window.screen.height;
 
             alert("모니터해상도>가로 : " + s_width + ", 세로:" + s_height);
-
+            
             var leftVar = s_width/2 - 300/2;
             var topVar = s_height/2 - 300/2;
             window.open("./pages/popup01.html", "popup",
                     "width=300, height=300,left=" + leftVar + ", top=" + topVar);
         }
+
+        function openChild1(){
+            window.open("./pages/openChild1st.html", "child1", "width=300, height=300, left=0, top=0");
+        }
+
 
     </script>
    
@@ -90,6 +104,10 @@
 
     <h2>화면의 해상도 얻어와스 스크린 중간에 파업띄우기</h2>
     <p style="text-align:center;">
+        <!-- 
+            이벤트 리스너에서는 세미콜로능로 구분하여 2개이상의 
+            함수를 호출하는 것이 가능하다.
+         -->
         <button onclick="screenCenterPop();">
             화면중간에 파업창 띄우기
         </button>

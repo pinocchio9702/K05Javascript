@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>openChild1st.html</title>
+    <script>
+        // open의 두번째 인자는 창의 이름이고 다른openr에 같은 창의이름을 지정할 경우 같은 창에서 페이지가 열리게 된다.
+        function openChild2(){
+            window.open("openChild2nd.html", "child2", "widht=300, height=300, left=300, top=0");
+        }
+
+        /*
+        JS에서 CSS속성 제어하기
+            CSS 속성 중 -(하이픈)이 있는 경우에는 -을 제거하한 후 다음 첫문자를
+            대문자로 표현한다. 하이픈이 없는 경우에는 원형 그대로 사용한다.
+            Ex) font-size => fontSize
+                color => color
+        */
+        //부모차으이 버튼을 text상자로 변경한다.
+        var openerText = function(){
+            opener.document.getElementById("btnFirst").type = "text";
+            opener.document.getElementById("btnFirst").style.backgroundColor = "red";
+        }
+        //부모창의 text상자를 button으로 변경한다.
+        var openerButton = function(){
+            opener.document.getElementById("btnFirst").type = "button";
+            opener.document.getElementById("btnFirst").style.backgroundColor = "blue";
+        }
+    </script>
+</head>
+<body>
+    <h2>openChild First 창</h2>
+    <p style="text-align:center;"> 
+        <button onclick="openChild2();">
+            파업에서 파업열기
+        </button>
+
+        <button onclick="openerText();">
+            부모창의 버튼을 text박스로 변셩하기
+        </button>
+        <button onclick="openerButton();">
+             부모창의 버튼을 button으로 변경하기
+        </button>
+    </p>
+</body>
+</html>

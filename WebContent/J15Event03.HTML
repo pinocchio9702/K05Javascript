@@ -8,12 +8,37 @@
         // 이벤트 활용 3: addEventListener객체 사용
         window.addEventListener("load", function(){
             alert("Load이벤트 활용 3. 문서 로딩 완료됨...");
+
+
+            var mydiv = document.getElementById("mydiv").innerHTML;
+            alert("mydiv의 내용 = " + mydiv);
         });
+
+        /*
+            JS는 인터프리터 방식으므로 DOM이 등장하기 전에 해당 내용을
+            가져오면 에러가 발생하게 된다. 따라서 HTMl문서의 로드가 끝난 이후 
+            읽어올수 있도록 함수로 정의하거나, 아니면 아예 문서하단에 
+            script를 기술해야 한다.        
+        */
+
+        var mydiv = document.getElementById("mydiv").innerHTML;
+        alert("mydiv의 내용 = " + mydiv);
+
+        function myFunc(){
+            var mydiv = document.getElementById("mydiv").innerHTML;
+            alert("mydiv의 내용 = " + mydiv);
+        }
     </SCript>
 </head>
 <body>
     <script>
         alert("문서의 마지막 부분");
+    </script>
+    <div id="mydiv" onclick="myFunc();" style="cursor: pointer;">
+        여기는 div 영역입니다.
+    </div>
+    <script>
+        //DOM이 선언된 이후이므로 여기에 기술해도 된다.
     </script>
 </body>
 </html>

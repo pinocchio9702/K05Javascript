@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J15Event07.html</title>
+</head>
+<body>
+    <h2>마우스 이베트</h2>
+
+    <h3>mousover / mouseout 이벤트</h3>
+    <table style="border-spacing: 1px; width: 400px; background-color: gray;">
+        <tr style="background-color: yellow;">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        <!-- 
+            JS가 아닌 HTML태그 자체 속성값으로 DOM을 처리하는 경우 this을 사용한다.
+         -->
+
+        <tr style="background-color: gray;"
+        onmouseover="this.style.backgroundColor='green';"
+        onmouseout="this.style.backgroundColor = 'gray';">
+            <td>1</td>
+            <td>어벤져스</td>
+            <td>페이즈1</td>
+        </tr>
+        <tr style="background-color: white;"
+        onmouseover="this.style.backgroundColor='green';"
+        onmouseout="this.style.backgroundColor = 'white';">
+            <td>2</td>
+            <td>어벤져스2-울트론의시대</td>
+            <td>페이즈2</td>
+        </tr>
+        <tr style="background-color: gray;"
+        onmouseover="this.style.backgroundColor='green';"
+        onmouseout="this.style.backgroundColor = 'gray';">
+            <td>3</td>
+            <td>어벤져스3-인피니티워</td>
+            <td>페이즈3</td>
+        </tr>
+        </tr>
+        <tr style="background-color: white;"
+        onmouseover="this.style.backgroundColor='green';"
+        onmouseout="this.style.backgroundColor = 'white';">
+            <td>4</td>
+            <td>어벤져스4-인피니티워</td>
+            <td>페이즈4</td>
+        </tr>
+</table>
+
+    <h3 id="title">mousedown/mouseup 이벤트</h3>
+    <h4>스케일 및 색상변경</h4>
+    <div onmousedown="fnScale(1);" onmouseup="fnScale(2);"
+            style="background-color: red; width: 100px;
+            height: 100px;">
+        여기를 클릭해보세요
+    </div>
+
+    <script>
+        function fnScale(flag){
+            var title = document.getElementById('title');
+            /*
+            현재 HTML문서에 존재하는 모든 div요소중에서 첫번째 요소를 
+            DOM으로 가져와 변수에 저장한다.
+            */
+            var div = document.getElementsByTagName("div")[0];
+
+            if(flag==1){
+                //마우스를 눌렀을때 (클릭) 이벤트
+                title.innerHTML = "<big>mousedown 이벤트 발생</big>";
+                div.style.backgroundColor = "green";
+                //div박스의 크기를 가져와서 2배로 늘린후 다시 적용한다.
+                div.style.width = parseInt(div.style.width)*2 +"px";
+                div.style.height = parseInt(div.style.height)*2 + "px";
+                //width와 같이 크기를 지정할 때는 반드시 px단위를 기술해야 한다.
+            }
+            else if(flag==2){
+                //마우스를 땠을때 이벤트 발생
+                title.innerHTML = "mouseup 이벤트 발생";
+                div.style.backgroundColor = "red";
+                div.style.width = "100px";
+                div.style.height = "100px";
+            }
+        }
+    </script>
+
+</body>
+</html>
