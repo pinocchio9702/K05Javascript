@@ -13,13 +13,13 @@
                 frm.id.focus();
                 return false;
             }
-            if(!frm.pwd.value || frm.pwd2.value){
+            if(!frm.pwd.value || !frm.pwd2.value){
                 alert('패스워드를 입력하세요');
                 return false;
             }
-           	<!-- 
+           	/* 
            		입력한 패스워드가 일치하지 않으면 둘 다 지우고 처음부터 다시 입력하게 한다.
-           	-->
+    		  */
             if(frm.pwd.value != frm.pwd2.value){
                 alert("입력한 패스워드가 일치하지 않습니다.");
                 frm.pwd.value="";
@@ -73,6 +73,11 @@
                 frm.grade1.focus();
                 return false;
             }
+            
+            <!-- 
+            	textarea태그는 자체적인 value속성은 없으나 JS에서 폼값 검증을 할때는  value속성을 사용한다.
+            -->
+            
             if(frm.grade2.value ==""){
                 alert("학력을 선택하세요");
                 frm.grade2.focus();
