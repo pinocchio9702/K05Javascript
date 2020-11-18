@@ -29,7 +29,7 @@
 
         /* 그냥 색깔이랑 길이랑 패딩만 준거 정렬이랑은 상관 없음 */
         /* div 을 제어함 */
-        .Wrap_regiform{border:1px solid red; width:900px; padding:5px 10px;}
+        .Wrap_regiform{border:1px solid red; width:1000px; padding:5px 10px;}
         
         /* div안에 있는 테이블을 제어함 */
         .Wrap_regiform table{
@@ -40,17 +40,37 @@
             width: 100%;
         }
 
+        .Wrap_regiform table tr td:nth-child(1){
+            padding-left: 25px;
+            
+        }
+
+        .Wrap_regiform table tr td:nth-child(1) span{
+            color: red;
+        }
+
         /* nth-child는 순서를 나타냄 즉, (2)는 2번째 td를 뜻하고 그중에서 button을 제어하는 css문이다. */
         .Wrap_regiform table tr td:nth-child(2) button{
             background-color: #333333; font-size: 1em; width: 120px;
             padding: 5px; color: #ffffff; border: 2px solid #333333;
         }
+
+
         .Wrap_regiform table tr td:nth-child(2) button:hover{
             cursor: pointer; background-color: #727272;
         }
 
+        .Wrap_regiform table tr td:nth-child(2) select{
+            height: 50px;
+            width: 150px;
+        }
+
         .Wrap_regiform table tr td input{
             padding: 6px; border: 1px solid #cccccc;
+        }
+
+        .Wrap_regiform table tr td input[type=radio]{
+          padding : 100px;
         }
 
         .Wrap_regiform table tr td:nth-child(2) img.pick{
@@ -60,8 +80,15 @@
         }
         .w01{width: 320px;}
         .w02{width: 200px;}
-        .w03{width: 100px;}
+        .w03{width: 150px;}
         .w04{width: 280px;}
+        .w05{width: 150px;}
+        .w06{width: 180px;}
+
+        form button{
+            background-color: #333333; font-size: 1em; width: 180px;
+            padding: 5px; color: #ffffff; border: 2px solid #333333;
+        }
     </style>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -116,20 +143,64 @@
             <table class="regi_table">
                 <colgroup>
                     <!-- colgroup : 미리 tr속성을 설정하게 해줌 -->
-                    <col width="180px">
+                    <col width="300px">
                     <col width="*">
                 </colgroup>
                 <tr>
-                    <td><span class="red">*</span> 아이디</td>
+                    <td><span>*</span> 아이디</td>
                     <td>
                         <input type="text" class="w01" name="userid" value="" />       
-                        <button type="button" onclick="">중복확인</button>             
+                        <button type="button" onclick="idcheck();">중복확인</button>             
                     </td>
                 </tr>
-    
-                 
                 <tr>
-                    <td><span class="red">*</span> 주소</td>
+                    <td><span>*</span> 패스워드</td>
+                    <td>
+                        <input type="text" class="w01" name="userpw" value="" />                   
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>*</span> 패스워드확인</td>
+                    <td>
+                        <input type="text" class="w01" name="userpwCheck" value="" />                   
+                    </td>
+                </tr>
+                <tr>
+ 
+                    <td><span>*</span> 이름</td>
+                    <td>
+                        <input type="text" class="w01" name="name" value="" />        
+                        <label for="radio-1">남</label>
+                        <input type="radio" name="gender" id="radio-1">
+                        <label for="radio-2">여</label>
+                        <input type="radio" name="gender" id="radio-2">                    
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="red">*</span> 생년월일</td>
+                    <td style="padding: 0px 0 5px 5px;">
+                        <input type="text" class="w02" name="birthday" id="birthday" value="" />
+                        <img src=".//images/pick.jpg" alt="" class="pick" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><span>*</span> 휴대전화번호</td>
+                    <td>
+                        <select class="w05" name="first_number"> 
+                            <option value="010">010</option> 
+                            <option value="016">016</option> 
+                            <option value="017">017</option> 
+                        </select>
+                        -
+                        <input type="text" class="w05" name="second_number" />
+                        -
+                        <input type="text" class="w05" name="third_number" />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><span>*</span> 주소</td>
                     <td>
                         <input type="text" class="w03" name="zonecode" value="" />
                         <button type="button" onclick="zipcodeFind();" style="width: 170px;">우편번호찾기</button> 
@@ -144,30 +215,54 @@
                         <input type="text" class="w04" name="address2" value="" />
                     </td>
                 </tr>
-
                 <tr>
- 
-                    <td><span class="red">*</span> 이름</td>
+                    <td><span>*</span> 이메일</td>
                     <td>
-                        <input type="text" class="w01" name="name" value="" />        
-                        <label for="radio-1">남</label>
-                        <input type="radio" name="gender" id="radio-1">
-                        <label for="radio-2">여</label>
-                        <input type="radio" name="gender" id="radio-2">                    
+                        <input type="text" class="w06" name="email1" value="" />
+                        @
+                        <input type="text" class="w06" name="email2" value="" />
+                        <select class="w06" name="first_number"> 
+                            <option value="">직접입력</option> 
+                            <option value="gamil">gamil.com</option> 
+                            <option value="naver">naver.com</option> 
+                            <option value="daum">daum.net</option> 
+                        </select>
                     </td>
                 </tr>
-                <tr>
-                    <td><span class="red">*</span> 생년월일</td>
-                    <td style="padding: 0px 0 5px 5px;">
-                        <input type="text" class="w02" name="birthday" id="birthday" value="" />
-                        <img src="..//images/pick.jpg" alt="" class="pick" />
-                    </td>
-                </tr>
+                
+                
     
             </table>
+            <button type="button" style="margin-left: 440px;">회원가입완료</button>
         </form>
         </div>
     </div>
-    
+    <script>
+        function idcheck(){
+            var id = document.getElementsByName("userid")[0].value;
+            
+            // if(id.length < 8 || id.length > 12){
+            //     alert("아이디는 8자에서 12자 사이로 구성해 주세요");
+            //     document.getElementsByName("userid")[0].value ="";
+                
+            // }
+
+
+            var s_width = window.screen.width;
+            var s_height = window.screen.height;
+
+            var leftVar = s_width/2 - 300/2;
+            var topVar = s_height/2 - 300/2;
+
+            console.log(id);
+
+            var windowObj = window.open("../pages/IdCheck.html","idcheck","width=600, height=200, left=" + leftVar + ", top=" + topVar);
+            console.log(windowObj.document.getElementById("userid"));
+            windowObj.document.getElementById("userid").value=id;
+            //console.log(windowObj.document.getElementById("userid").value);
+            //document.getElementsByName("userid")[0].value;
+            
+        }
+    </script>
 </body>
 </html>

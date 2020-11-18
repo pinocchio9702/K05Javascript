@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdCheck.html</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&display=swap');
+    
+        *{
+            font-family: 'Gaegu', cursive;/*문서의 기본폰트 설정*/
+            font-size: 30px;
+            margin: 0 auto;/*문서의 전체의 가운데 정렬*/
+        }
+        
+        form{
+            padding-left: 80px;
+        }
+
+        form button{
+            background-color: #333333; font-size: 1em; width: 120px;
+            padding: 5px; color: #ffffff; border: 2px solid #333333;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" id="userid"/>       
+        <button type="button" onclick="idcheck();">중복확인</button> 
+    </form>
+
+    <script>
+        function idcheck(){
+            
+            console.log(document.getElementById("userid").value);
+        }
+    </script>
+</body>
+</html>
