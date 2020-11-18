@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegiFormReview.html</title>
+
+    <!-- 구글 폰트
+        https://fonts.google.com/ -->
+    <!-- 
+        jQuery UI : https://jqueryui.com/
+     -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Noto+Sans+KR&display=swap');
+    
+        *{
+            font-family: 'Gaegu', cursive;/*문서의 기본폰트 설정*/
+            font-size: 30px;
+            margin: 0 auto;/*문서의 전체의 가운데 정렬*/
+        }
+
+        /* 가장 상위에 div을 제어함 */
+        .AllWrap{padding:50px}
+
+        /* 그냥 색깔이랑 길이랑 패딩만 준거 정렬이랑은 상관 없음 */
+        /* div 을 제어함 */
+        .Wrap_regiform{border:1px solid red; width:900px; padding:5px 10px;}
+        
+        /* div안에 있는 테이블을 제어함 */
+        .Wrap_regiform table{
+            border-top:3px solid #000000;
+            border-left:1px solid silver;
+            border-right:1px solid silver;
+            border-bottom:1px solid silver;
+            width: 100%;
+        }
+
+        /* nth-child는 순서를 나타냄 즉, (2)는 2번째 td를 뜻하고 그중에서 button을 제어하는 css문이다. */
+        .Wrap_regiform table tr td:nth-child(2) button{
+            background-color: #333333; font-size: 1em; width: 120px;
+            padding: 5px; color: #ffffff; border: 2px solid #333333;
+        }
+        .Wrap_regiform table tr td:nth-child(2) button:hover{
+            cursor: pointer; background-color: #727272;
+        }
+
+        .Wrap_regiform table tr td input{
+            padding: 6px; border: 1px solid #cccccc;
+        }
+
+        .Wrap_regiform table tr td:nth-child(2) img.pick{
+            position: relative;
+            top : 17px; left: -12px;
+            height: 50px;
+        }
+        .w01{width: 320px;}
+        .w02{width: 200px;}
+        .w03{width: 100px;}
+        .w04{width: 280px;}
+    </style>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function zipcodeFind(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    console.log(data.zonecode);
+                    console.log(data.address);
+                    console.log(data.sido);
+                    console.log(data.sigungu);
+
+                    //가입폼에 적용하기(form을 가져오기)
+                    var f = document.regiform;
+                    //폼이름을 가져오면 태그의 이름으로 그 태그를 제어할 수 있다.
+                    //zonecode.value(input태그)에 zonecode을 넣기
+                    f.zonecode.value = data.zonecode;
+                    //address1.value(input태그)에 address을 넣기
+                    f.address1.value = data.address;
+                    f.address2.focus();
+                }
+            }).open();
+        }
+    </script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        // input[타입] - input태그 중에 서 타입이 라디오을 제어한다.
+        // 라디오를 버튼모양으로 바꿔주는 jQuery UI
+        $( "input[type=radio]" ).checkboxradio({
+            icon: false
+        });
+
+        //날짜 선택을 편리하게 - Date Picker
+        $( "#birthday" ).datepicker({
+                dateformat : "yy-mm-dd"
+              
+        } );
+    });
+    </script>
+</head>
+<body>
+    <div class="AllWrap">
+
+        <h2>회원가입폼</h2>
+        <div class="Wrap_regiform">
+        <form name="regiform">
+            <table class="regi_table">
+                <colgroup>
+                    <!-- colgroup : 미리 tr속성을 설정하게 해줌 -->
+                    <col width="180px">
+                    <col width="*">
+                </colgroup>
+                <tr>
+                    <td><span class="red">*</span> 아이디</td>
+                    <td>
+                        <input type="text" class="w01" name="userid" value="" />       
+                        <button type="button" onclick="">중복확인</button>             
+                    </td>
+                </tr>
+    
+                 
+                <tr>
+                    <td><span class="red">*</span> 주소</td>
+                    <td>
+                        <input type="text" class="w03" name="zonecode" value="" />
+                        <button type="button" onclick="zipcodeFind();" style="width: 170px;">우편번호찾기</button> 
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <!-- 기본주소 -->
+                        <input type="text" class="w04" name="address1" value="" />
+                        <!-- 상세주소 -->
+                        <input type="text" class="w04" name="address2" value="" />
+                    </td>
+                </tr>
+
+                <tr>
+ 
+                    <td><span class="red">*</span> 이름</td>
+                    <td>
+                        <input type="text" class="w01" name="name" value="" />        
+                        <label for="radio-1">남</label>
+                        <input type="radio" name="gender" id="radio-1">
+                        <label for="radio-2">여</label>
+                        <input type="radio" name="gender" id="radio-2">                    
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="red">*</span> 생년월일</td>
+                    <td style="padding: 0px 0 5px 5px;">
+                        <input type="text" class="w02" name="birthday" id="birthday" value="" />
+                        <img src="..//images/pick.jpg" alt="" class="pick" />
+                    </td>
+                </tr>
+    
+            </table>
+        </form>
+        </div>
+    </div>
+    
+</body>
+</html>

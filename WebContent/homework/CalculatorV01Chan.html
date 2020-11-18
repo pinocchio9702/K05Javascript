@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator.html</title>
+<style>
+    table{
+        background-color: #DDDDDD;
+        border: 1px solid #c7c7c7;
+        border-radius: 10px;
+        
+    }
+   button{
+        border:1px solid #dddddd; 
+        border-radius: 10px;
+        font-size: 1.5em; height:50px;
+        color:#ffffff;
+   }
+   
+   #lcd {
+       /* 질문 왜 여기서 100%을 하면 빠져나가는가? */
+        /* width: 100%; */
+        background-color: #70C738; 
+        text-align:right;
+        font-size: 2.5em;
+        border-radius: 10px;
+         /* 상, 우, 하,좌를 지정 */
+         padding: 10px;
+         color: #373737;
+         font-weight: bold;
+   }
+
+   button.controller{
+        width: 204px; 
+        background-color: #7B7B7B; 
+        
+        /* text-align:center;
+        color: #FAFAFA;
+        font-size: 1.2em;
+        vertical-align : middle;
+        padding-bottom: 5px; */
+   }
+   button.key_type1, input.key_type1{
+    width: 100px; background-color: #373737;
+   }
+   button.calcul{
+        width: 100px; 
+        background-color: #FA960A;
+        /* height : 100%;
+        text-align:center;
+        border-radius: 10px 10px 10px 10px;
+        color: #FAFAFA;
+        font-size: 1.3em; */
+   }
+
+   h2{
+       text-align: center;
+   }
+
+</style>
+
+
+</head>
+<body>
+    <h2> 계산기Ver1.0 </h2>
+
+    <table align="center">
+        <tr>
+            <td colspan="4">
+                <div id="lcd" width="100%">0</div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"> 
+                <button class="controller">BackSpace</button></td>
+            <td colspan="2"> 
+                <button class="controller">C</button></td>
+        </tr>
+        <tr>
+            <td><button class="key_type1" value="1" onclick="showlcd(this);">1</button></td>
+            <td><button class="key_type1" value="2" onclick="showlcd(this);">2</button></td>
+            <td><button class="key_type1" value="3" onclick="showlcd(this);">3</button></td>
+            <td><button type="button" class="calcul" >+</td>
+        </tr>
+        <tr>
+            <td><button class="key_type1" value="4" onclick="showlcd(this);">4</button></td>
+            <td><button class="key_type1" value="5" onclick="showlcd(this);">5</button></td>
+            <td><button class="key_type1" value="6" onclick="showlcd(this);">6</button></td>
+            <td><button type="button" class="calcul">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="key_type1" value="7" onclick="showlcd(this);">7</button></td>
+            <td><button class="key_type1" value="8" onclick="showlcd(this);">8</button></td>
+            <td><button class="key_type1" value="9" onclick="showlcd(this);">9</button></td>
+            <td><button type="button" class="calcul">x</button></td>
+        </tr>
+        <tr>
+            <td><button class="key_type1">=</button></td>
+            <td><button class="key_type1">0</button></td>
+            <td><button class="key_type1">.</button></td>
+            <td><button type="button" class="calcul" >-</button></td>
+        </tr>
+    </table>
+    <script>
+        var fisrt_button = 0;
+    
+        function showlcd(obj){
+            //버튼 숫자 받기
+            //console.log(obj.value);
+            
+            
+            
+            // if(fisrt_button == 0){
+            //     document.getElementById('lcd').innerHTML = "";
+            //     console.log(display);
+            //     fisrt_button++;
+            // }
+
+            
+            //document.getElementById('lcd').innerHTML = display;
+            
+        }
+    </script>
+</body>
+</html>
