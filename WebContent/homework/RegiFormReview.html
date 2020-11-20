@@ -256,11 +256,8 @@
 
             console.log(id);
 
-            var windowObj = window.open("../pages/IdCheck.html","idcheck","width=600, height=200, left=" + leftVar + ", top=" + topVar);
-            console.log(windowObj.document.getElementById("userid"));
-            windowObj.document.getElementById("userid").value=id;
-            //console.log(windowObj.document.getElementById("userid").value);
-            //document.getElementsByName("userid")[0].value;
+            window.open("../pages/idCheck.jsp?id="+id,"idcheck","width=600, height=200, left=" + leftVar + ", top=" + topVar);
+
             
         }
     </script>

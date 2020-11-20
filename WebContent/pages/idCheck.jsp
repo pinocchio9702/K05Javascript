@@ -1,11 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IdCheck.html</title>
-    
-    <script type="text/javascript">
+<meta charset="UTF-8">
+<title>IdCheck.html</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+ <script type="text/javascript">
 		function idUse(){
 			opener.document.regiform.userid.value = 
 				document.overlapping.userid.value;
@@ -36,9 +41,12 @@
     </style>
 </head>
 <body>
-
+	<%
+		String id = request.getParameter("id"); 
+		
+	%>
     <form name="overlapping">
-        <input type="text" id="userid" value=>     
+        <input type="text" id="userid" value= <%=id %>>     
         <button type="button" onclick="idcheck();">중복확인</button> 
     </form>
 
