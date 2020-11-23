@@ -38,6 +38,9 @@
             background-color: #333333; font-size: 1em; width: 120px;
             padding: 5px; color: #ffffff; border: 2px solid #333333;
         }
+        form #warring{
+        	color : red;
+        }
     </style>
 </head>
 <body>
@@ -48,12 +51,36 @@
     <form name="overlapping">
         <input type="text" id="userid" value= <%=id %>>     
         <button type="button" onclick="idcheck();">중복확인</button> 
+        <p id="warring"></p>
     </form>
 
     <script>
         function idcheck(){
             
+        	//특수기호가 있는지 없는지 확인하는 변수
+        	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+        	//한글 체크
+        	var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+        	
             console.log(document.getElementById("userid").value);
+            
+            var id = document.getElementById("userid").value;
+            
+            if(id.length < 8 || id.length > 12){
+            	document.getElementById("warring").innerHTML = "아이디는 8~12자 사이로 만들어주세요";
+            }
+            
+            else if(!isNaN(id.charAt(0))){
+            	document.getElementById("warring").innerHTML = "아이디의 첫문자는 숫자로 만들수 없습니다. ";
+            }
+            
+            else if(special_pattern.test(id) || pattern_kor.test(id)){
+            	document.getElementById("warring").innerHTML = "아이디는 숫자와 영어로만 만드실수 있습니다. ";
+            }
+            
+            
+            
         }
     </script>
 </body>
