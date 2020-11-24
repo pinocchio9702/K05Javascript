@@ -79,6 +79,12 @@
             	document.getElementById("warring").innerHTML = "아이디는 숫자와 영어로만 만드실수 있습니다. ";
             }
             
+            else{
+            	opener.document.getElementById("allow").innerHTML = "사용가능";
+            	//document.getElementById("userid").readOnly = true;
+            	opener.document.getElementsByName("userid")[0].value = id;
+            	self.close();
+            }
             
             
         }

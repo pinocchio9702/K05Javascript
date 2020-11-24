@@ -89,6 +89,7 @@
             background-color: #333333; font-size: 1em; width: 180px;
             padding: 5px; color: #ffffff; border: 2px solid #333333;
         }
+        
     </style>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -150,7 +151,9 @@
                     <td><span>*</span> 아이디</td>
                     <td>
                         <input type="text" class="w01" name="userid" value="" />       
-                        <button type="button" onclick="idcheck();">중복확인</button>             
+                        <button type="button" onclick="idcheck();">중복확인</button>
+                        <span id="allow" style="color : blue"></span>
+                                     
                     </td>
                 </tr>
                 <tr>
@@ -193,9 +196,9 @@
                             <option value="017">017</option> 
                         </select>
                         -
-                        <input type="text" class="w05" name="second_number" />
+                        <input type="text" class="w05" name="second_number" onkeyup="foc();"/>
                         -
-                        <input type="text" class="w05" name="third_number" />
+                        <input type="text" class="w05" name="third_number" onkeyup="foc();"/>
                     </td>
                 </tr>
                 
@@ -221,11 +224,11 @@
                         <input type="text" class="w06" name="email1" value="" />
                         @
                         <input type="text" class="w06" name="email2" value="" />
-                        <select class="w06" name="first_number"> 
-                            <option value="">직접입력</option> 
-                            <option value="gamil">gamil.com</option> 
-                            <option value="naver">naver.com</option> 
-                            <option value="daum">daum.net</option> 
+                        <select class="w06" name="email3" onchange="emailchange();"> 
+                            <option value="1">직접입력</option> 
+                            <option>gamil.com</option> 
+                            <option>naver.com</option> 
+                            <option>daum.net</option> 
                         </select>
                     </td>
                 </tr>
@@ -233,20 +236,24 @@
                 
     
             </table>
-            <button type="button" style="margin-left: 440px;">회원가입완료</button>
+            <button type="button" style="margin-left: 440px;" onclick="Sign_up_comple();">회원가입완료</button>
         </form>
         </div>
     </div>
     <script>
         function idcheck(){
-            var id = document.getElementsByName("userid")[0].value;
+            var id = document.getElementsByName("userid")[0];
             
             // if(id.length < 8 || id.length > 12){
             //     alert("아이디는 8자에서 12자 사이로 구성해 주세요");
             //     document.getElementsByName("userid")[0].value ="";
                 
             // }
-
+			
+            if(id.value == ""){
+            	alert("아이디를 입력해주세요");
+            	return
+            }
 
             var s_width = window.screen.width;
             var s_height = window.screen.height;
@@ -255,10 +262,54 @@
             var topVar = s_height/2 - 300/2;
 
             console.log(id);
+            
+            id.readOnly = true;
 
-            window.open("../pages/idCheck.jsp?id="+id,"idcheck","width=700, height=200, left=" + leftVar + ", top=" + topVar);
+            window.open("../pages/idCheck.jsp?id="+id.value,"idcheck","width=700, height=200, left=" + leftVar + ", top=" + topVar);
 
             
+        }
+        
+        function foc(){
+        	var number_first = document.getElementsByName("second_number")[0].value;
+        	
+        	var number_second = document.getElementsByName("third_number")[0].value;
+        	
+        	//zonecode
+        	console.log(number_first);
+        	
+        	if(number_first.length >= 4){
+        		document.getElementsByName("third_number")[0].focus();
+        	}
+        	
+        	if(number_second.length >= 4){
+        		document.getElementsByName("zonecode")[0].focus();
+        	}
+        	
+        }
+        
+        function emailchange(){
+        	var email = document.getElementsByName("email3")[0];
+        	
+        	console.log(email.value);
+        	
+        	if(email.value==1){
+        		document.getElementsByName("email2")[0].value = "";
+        	}
+
+        	else if(!(email.value==1)){
+        		document.getElementsByName("email2")[0].value = email.value;
+        	}
+        	
+        	
+        }
+        
+        function Sign_up_comple(){
+        	if(document.getElementById("allow").innerHTML != "사용가능"){
+        		alert("아이디 중복확인을 해주세요")
+        	}
+        	
+        	
         }
     </script>
 </body>
