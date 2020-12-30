@@ -11,11 +11,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
  <script type="text/javascript">
-		function idUse(){
-			opener.document.regiform.userid.value = 
-				document.overlapping.userid.value;
-			self.close();
-		}
 	</script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -68,7 +63,7 @@
             var id = document.getElementById("userid").value;
             
             if(id.length < 8 || id.length > 12){
-            	document.getElementById("warring").innerHTML = "아이디는 8~12자 사이로 만들어주세요";
+            	document.getElementById("warring").innerHTML = "아이디는 4~12자 사이로 만들어주세요";
             }
             
             else if(!isNaN(id.charAt(0))){
@@ -78,6 +73,10 @@
             else if(special_pattern.test(id) || pattern_kor.test(id)){
             	document.getElementById("warring").innerHTML = "아이디는 숫자와 영어로만 만드실수 있습니다. ";
             }
+            
+            
+      		
+            //숫자만 있을때도 나중에 해결해보자
             
             else{
             	opener.document.getElementById("allow").innerHTML = "사용가능";
